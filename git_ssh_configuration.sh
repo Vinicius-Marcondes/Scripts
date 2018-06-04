@@ -18,9 +18,10 @@ elif [ $id == "N" ];
 		read id;
 fi
 if [ $id == "Y" ];
-then 
-	ssh-keygen -t rsa -b 4096 -C "$email"
-	ssh -add ~/.ssh/id_rsa
-	xclip -sel clip < ~/.ssh/id_rsa.pub
+	then 
+		ssh-keygen -t rsa -b 4096 -C "$email"
+		eval "$(ssh-agent -s)"
+		ssh-add ~/.ssh/id_rsa
+		xclip -sel clip < ~/.ssh/id_rsa.pub
 fi
 echo "Done!"
